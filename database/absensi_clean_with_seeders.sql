@@ -1,5 +1,5 @@
 -- -------------------------------------------------------------
--- SQL Database Bersih Siap Pakai (Schema + Initial Seeders)
+-- SQL Database Bersih Siap Pakai (Schema + Initial Seeders Sesuai Routes)
 -- Sistem Absensi & Payroll
 -- -------------------------------------------------------------
 
@@ -50,7 +50,7 @@ INSERT INTO `units` (`id`, `code`, `name`, `color`, `default_time_in`, `default_
 (4, 'PONDOK', 'Pondok Pesantren / Asrama', '#d97706', '06:00:00', '21:00:00', 15, 1, 'Kegiatan Pengasuhan & Asrama', NOW(), NOW()),
 (5, 'TAHFIDZ', 'Program Tahfidz Al-Qur\'an', '#dc2626', '05:00:00', '20:00:00', 15, 1, 'Program Khusus Tahfidzul Qur\'an', NOW(), NOW());
 
--- 3. TABEL MENUS & DATA
+-- 3. TABEL MENUS & DATA SESUAI RUTE SISTEM
 DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -77,22 +77,22 @@ CREATE TABLE `menus` (
 INSERT INTO `menus` (`id`, `parent_id`, `code`, `name`, `route_name`, `url`, `icon`, `order_index`, `is_active`, `has_create`, `has_update`, `has_delete`, `has_export`, `created_at`, `updated_at`) VALUES
 (1, NULL, 'dashboard', 'Portal Menu', 'dashboard', '/dashboard', 'bi bi-grid-fill', 1, 1, 0, 0, 0, 0, NOW(), NOW()),
 (2, NULL, 'schedule-group', 'Jadwal & Jam Kerja', NULL, NULL, 'bi bi-calendar2-range-fill', 2, 1, 0, 0, 0, 0, NOW(), NOW()),
-(3, 2, 'my-schedule', 'Jadwal Mengajar Saya', 'my-schedule.index', '/my-schedule', 'bi bi-calendar2-week-fill', 1, 1, 0, 0, 0, 0, NOW(), NOW()),
-(4, 2, 'employee-schedule-matrix', 'Matriks Jadwal Pegawai', 'schedules.matrix', '/schedules/matrix', 'bi bi-calendar3-range', 2, 1, 1, 1, 1, 1, NOW(), NOW()),
-(5, 2, 'unit-work-schedules', 'Jam Kerja Unit & Lembaga', 'unit-schedules.index', '/unit-schedules', 'bi bi-clock-history', 3, 1, 1, 1, 1, 0, NOW(), NOW()),
-(6, NULL, 'attendance-group', 'Presensi & Kehadiran', NULL, NULL, 'bi bi-clock-fill', 3, 1, 0, 0, 0, 0, NOW(), NOW()),
-(7, 6, 'my-attendance', 'Presensi Mandiri', 'my-attendance.index', '/my-attendance', 'bi bi-person-check-fill', 1, 1, 1, 0, 0, 0, NOW(), NOW()),
-(8, 6, 'attendance-records', 'Rekap Presensi Harian', 'attendance.index', '/attendance', 'bi bi-table', 2, 1, 1, 1, 1, 1, NOW(), NOW()),
-(9, 6, 'attendance-reports', 'Laporan Presensi', 'reports.attendance', '/reports/attendance', 'bi bi-file-earmark-bar-graph-fill', 3, 1, 0, 0, 0, 1, NOW(), NOW()),
-(10, NULL, 'payroll-group', 'Honor & Penggajian', NULL, NULL, 'bi bi-cash-stack', 4, 1, 0, 0, 0, 0, NOW(), NOW()),
-(11, 10, 'my-payslip', 'Slip Gaji Saya', 'my-payroll.index', '/my-payroll', 'bi bi-receipt-cutoff', 1, 1, 0, 0, 0, 1, NOW(), NOW()),
-(12, 10, 'payroll-management', 'Kalkulasi Payroll & Honor', 'payroll.index', '/payroll', 'bi bi-calculator-fill', 2, 1, 1, 1, 1, 1, NOW(), NOW()),
-(13, 10, 'teaching-rates', 'Tarif Honor Mengajar', 'teaching-rates.index', '/teaching-rates', 'bi bi-tags-fill', 3, 1, 1, 1, 1, 0, NOW(), NOW()),
-(14, NULL, 'master-data-group', 'Master Data & Akses', NULL, NULL, 'bi bi-gear-wide-connected', 5, 1, 0, 0, 0, 0, NOW(), NOW()),
-(15, 14, 'units-management', 'Data Lembaga / Unit', 'units.index', '/units', 'bi bi-buildings-fill', 1, 1, 1, 1, 1, 0, NOW(), NOW()),
-(16, 14, 'users-management', 'Data Pegawai & Guru', 'users.index', '/users', 'bi bi-people-fill', 2, 1, 1, 1, 1, 1, NOW(), NOW());
+(3, 2, 'my-schedule', 'Jadwal Mengajar Saya', 'my-schedule.index', '/my-schedule', 'bi bi-calendar2-week-fill', 1, 1, 0, 0, 0, 1, NOW(), NOW()),
+(4, 2, 'schedule-info', 'Informasi Jadwal Guru', 'schedule-info.index', '/schedule-info', 'bi bi-calendar3-event', 2, 1, 0, 0, 0, 1, NOW(), NOW()),
+(5, 2, 'work-schedules', 'Pengaturan Jam Kerja & Unit', 'work-schedules.index', '/work-schedules', 'bi bi-sliders2-vertical', 3, 1, 1, 1, 1, 1, NOW(), NOW()),
+(6, NULL, 'attendance-group', 'Presensi & Absensi', NULL, NULL, 'bi bi-calendar2-check-fill', 3, 1, 0, 0, 0, 0, NOW(), NOW()),
+(7, 6, 'attendances', 'Data Absensi & Inject Excel', 'attendances.index', '/attendances', 'bi bi-file-earmark-spreadsheet', 1, 1, 1, 1, 1, 1, NOW(), NOW()),
+(8, 6, 'attendance-recap', 'Rekap Absen Pegawai', 'attendance-recap.index', '/attendance-recap', 'bi bi-person-lines-fill', 2, 1, 0, 0, 0, 1, NOW(), NOW()),
+(9, 6, 'reports', 'Laporan Presensi', 'reports.index', '/reports', 'bi bi-file-earmark-bar-graph-fill', 3, 1, 0, 0, 0, 1, NOW(), NOW()),
+(10, NULL, 'payroll-group', 'Penggajian & Honor', NULL, NULL, 'bi bi-cash-stack', 4, 1, 0, 0, 0, 0, NOW(), NOW()),
+(11, 10, 'teaching-rates', 'Tarif Honor Mengajar', 'teaching-rates.index', '/teaching-rates', 'bi bi-tags-fill', 1, 1, 1, 1, 1, 0, NOW(), NOW()),
+(12, 10, 'payrolls', 'Penggajian Guru (Payroll)', 'payrolls.index', '/payrolls', 'bi bi-wallet2', 2, 1, 1, 1, 1, 1, NOW(), NOW()),
+(13, NULL, 'settings-group', 'Master & Pengaturan', NULL, NULL, 'bi bi-gear-fill', 5, 1, 0, 0, 0, 0, NOW(), NOW()),
+(14, 13, 'users', 'Manajemen Pengguna', 'users.index', '/users', 'bi bi-people-fill', 1, 1, 1, 1, 1, 1, NOW(), NOW()),
+(15, 13, 'roles', 'Manajemen Role & Izin', 'roles.index', '/roles', 'bi bi-shield-lock-fill', 2, 1, 1, 1, 1, 0, NOW(), NOW()),
+(16, 13, 'menus', 'Manajemen Menu', 'menus.index', '/menus', 'bi bi-menu-button-wide-fill', 3, 1, 1, 1, 1, 0, NOW(), NOW());
 
--- 4. TABEL USERS & DATA AWAL
+-- 4. TABEL USERS & DATA AWAL (PASSWORD: password)
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -119,11 +119,11 @@ CREATE TABLE `users` (
   CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
--- Password default: "password"
+-- Hash resmi untuk password "password"
 INSERT INTO `users` (`id`, `role_id`, `name`, `username`, `nip`, `email`, `phone`, `position`, `department`, `avatar`, `is_active`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Super Administrator', 'superadmin', 'SA-001', 'admin@absensi.com', '081234567890', 'IT System Administrator', 'Information Technology', NULL, 1, NOW(), '$2y$12$K1rS2B750a9zBf41Nq.j9eIqgUa3UuI0LkW80r7W.8Kx3K2C9R5v2', NULL, NOW(), NOW()),
-(2, 2, 'Admin HRD', 'adminhrd', 'HR-002', 'admin2@absensi.com', '081298765432', 'HR Operations Staff', 'Human Resources', NULL, 1, NOW(), '$2y$12$K1rS2B750a9zBf41Nq.j9eIqgUa3UuI0LkW80r7W.8Kx3K2C9R5v2', NULL, NOW(), NOW()),
-(3, 3, 'Ahmad Fauzi', 'ahmadfauzi', 'KY-1001', 'user@absensi.com', '085712345678', 'Staff Operasional', 'Operasional', NULL, 1, NOW(), '$2y$12$K1rS2B750a9zBf41Nq.j9eIqgUa3UuI0LkW80r7W.8Kx3K2C9R5v2', NULL, NOW(), NOW());
+(1, 1, 'Super Administrator', 'superadmin', 'SA-001', 'admin@absensi.com', '081234567890', 'IT System Administrator', 'Information Technology', NULL, 1, NOW(), '$2y$10$FBR5I4k/A5gIK6RzMe6Aye6UhuGyekfoJNdup4P1aRwKVsWqT.2sa', NULL, NOW(), NOW()),
+(2, 2, 'Admin HRD', 'adminhrd', 'HR-002', 'admin2@absensi.com', '081298765432', 'HR Operations Staff', 'Human Resources', NULL, 1, NOW(), '$2y$10$FBR5I4k/A5gIK6RzMe6Aye6UhuGyekfoJNdup4P1aRwKVsWqT.2sa', NULL, NOW(), NOW()),
+(3, 3, 'Ahmad Fauzi', 'ahmadfauzi', 'KY-1001', 'user@absensi.com', '085712345678', 'Staff Operasional', 'Operasional', NULL, 1, NOW(), '$2y$10$FBR5I4k/A5gIK6RzMe6Aye6UhuGyekfoJNdup4P1aRwKVsWqT.2sa', NULL, NOW(), NOW());
 
 -- 5. TABEL SISTEM & CACHE LARAVEL
 DROP TABLE IF EXISTS `cache`;
@@ -253,7 +253,7 @@ INSERT INTO `role_menu_permissions` (`role_id`, `menu_id`, `can_view`, `can_crea
 SELECT 2, id, 1, has_create, has_update, has_delete, has_export, NOW(), NOW() FROM `menus`;
 
 INSERT INTO `role_menu_permissions` (`role_id`, `menu_id`, `can_view`, `can_create`, `can_update`, `can_delete`, `can_export`, `created_at`, `updated_at`)
-SELECT 3, id, 1, has_create, 0, 0, has_export, NOW(), NOW() FROM `menus` WHERE `code` IN ('dashboard', 'schedule-group', 'my-schedule', 'attendance-group', 'my-attendance', 'payroll-group', 'my-payslip');
+SELECT 3, id, 1, has_create, 0, 0, has_export, NOW(), NOW() FROM `menus` WHERE `code` IN ('dashboard', 'schedule-group', 'my-schedule', 'attendance-group', 'payroll-group');
 
 -- 7. TABEL UNIT SCHEDULES & RATES
 DROP TABLE IF EXISTS `unit_work_schedules`;

@@ -1,58 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Rekap Absensi, Jadwal Mengajar & Penggajian (Payroll)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi manajemen presensi karyawan dan guru terintegrasi, dilengkapi dengan **Dynamic RBAC (Role-Based Access Control)**, pengelolaan jam kerja multi-jenjang yayasan (TK, SD, SMP, SMA), jadwal mengajar harian, serta mesin kalkulasi otomatis penggajian (payroll) guru dan cetak slip gaji digital.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌟 Fitur Unggulan
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. 🔐 Dynamic RBAC & Role Management
+- Manajemen peran (*roles*) dan pengguna (*users*) yang fleksibel.
+- Dynamic Menu & Granular CRUD Permissions (Hak akses Create, Read, Update, Delete dapat diatur per menu per role).
+- Fitur *1-Click Demo Login* untuk mempermudah simulasi berbagai tingkatan akun.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. 🕒 Presensi & Rekapitulasi Kehadiran
+- **Presensi Mandiri (Self Clock-In / Clock-Out)** langsung dari perangkat karyawan/guru.
+- **Import Presensi Fingerprint**: Dukungan impor rekap kehadiran dari mesin absensi / file Excel (`.xlsx`, `.csv`).
+- **Analisis & Rekap Kehadiran**: Rekap status hadir, terlambat, izin, sakit, alpa beserta kalkulasi durasi kerja efektif.
 
-## Learning Laravel
+### 3. 🏫 Multi-Jenjang & Jadwal Mengajar
+- Pengaturan jam kerja pegawai berdasarkan jenjang yayasan (**TK, SD, SMP, SMA**).
+- **Jadwal Mengajar Guru**: Penjadwalan mata pelajaran, kelas, hari, dan jumlah jam/sesi mengajar perorangan.
+- Tampilan jadwal mengajar personal (*My Schedule*) untuk guru yang sedang login.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 4. 💰 Modul Penggajian & Honor Mengajar (Payroll)
+- **Master Tarif Honor Mengajar**: Penyesuaian tarif per jam / sesi mengajar berdasarkan jenjang dan mata pelajaran.
+- **Mesin Kalkulasi Otomatis**: Integrasi absensi kehadiran dan sesi mengajar aktual ke dalam perhitungan gaji kotor, potongan, dan gaji bersih.
+- **Slip Gaji Digital (PDF)**: Generate dan unduh slip gaji perorangan berformat PDF resmi.
+- **Laporan Rekapitulasi Payroll**: Ekspor rekapitulasi gaji yayasan ke format Excel dan PDF.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 5. 🎨 Antarmuka Modern & Responsif
+- Tampilan UI berbasis Bootstrap 5.3 dengan aksen Glassmorphism & kartu metrik modern.
+- **Portal Menu Launcher**: Pencarian menu interaktif (*Live Search*) dan filter kategori menu secara *real-time*.
+- Notifikasi interaktif berbasis **SweetAlert2**.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🛠️ Teknologi yang Digunakan
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- **Backend**: Laravel 11.x
+- **Bahasa Pemrograman**: PHP 8.2 / 8.3+
+- **Database**: MySQL 8.x / MariaDB
+- **Frontend**: Blade Templating, Bootstrap 5.3, Bootstrap Icons, SweetAlert2, jQuery 3.7
+- **Library Tambahan**:
+  - `barryvdh/laravel-dompdf` (Cetak Slip Gaji & Laporan PDF)
+  - `maatwebsite/excel` (Import & Export Excel)
 
+---
+
+## 🚀 Panduan Instalasi Lokal
+
+### 1. Prasyarat Sistem
+- Web Server Lokal (disarankan **Laragon** atau XAMPP)
+- PHP >= 8.2 (dengan ekstensi `pdo_mysql`, `mbstring`, `openssl`, `gd`, `zip`)
+- Composer
+- Git
+
+### 2. Kloning Repositori
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/BayuSetyo71/rekap-absensi.git
+cd rekap-absensi
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 3. Instal Dependensi Composer
+```bash
+composer install
+```
 
-## Contributing
+### 4. Konfigurasi Lingkungan (`.env`)
+Salin file template lingkungan dan sesuaikan konfigurasi database Anda:
+```bash
+cp .env.example .env
+```
+Buka file `.env` dan pastikan nama database sesuai (misal: `absensi`):
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=absensi
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5. Generate Application Key
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+### 6. Migrasi Database & Seeder
+Jalankan migrasi beserta data awal (roles, default menu, akun demo, tarif honor, dan sampel absensi):
+```bash
+php artisan migrate:fresh --seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 7. Jalankan Aplikasi
+Jika menggunakan Laragon, aplikasi dapat diakses di:
+- `http://localhost/absensi/public` atau `http://absensi.test`
 
-## Security Vulnerabilities
+Atau melalui built-in server Laravel:
+```bash
+php artisan serve
+```
+Akses di browser: `http://127.0.0.1:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🔑 Akun Demo (Default Credentials)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Semua akun default menggunakan kata sandi: `password`
+
+| Peran (Role) | Username | Email | Hak Akses Utama |
+|---|---|---|---|
+| **Super Administrator** | `superadmin` | `admin@absensi.com` | Akses penuh seluruh modul & bypass izin RBAC |
+| **Admin HRD** | `adminhrd` | `admin2@absensi.com` | Manajemen Karyawan, Jam Kerja, Menu & Roles |
+| **Guru / Karyawan** | `ahmadfauzi` | `user@absensi.com` | Presensi Mandiri, Jadwal Mengajar, Unduh Slip Gaji |
+
+---
+
+## 📚 Struktur Dokumentasi Modul (`docs/`)
+
+Dokumentasi alur sistem tersusun rapi di dalam direktori `docs/` untuk mempermudah penelusuran (*tracing*):
+
+```
+docs/
+├── README.md                           # Indeks dokumentasi lengkap
+├── auth/                               # Alur autentikasi dan quick login
+├── portal_menu/                        # Dokumentasi App Launcher & live search
+├── karyawan/                           # Dashboard karyawan & presensi mandiri
+├── jam_kerja/                          # Pengaturan jam kerja & jadwal mengajar
+├── absensi/                            # Import Excel & rekapitulasi kehadiran
+├── penggajian/                         # Alur tarif honor, kalkulasi payroll & slip gaji
+├── rbac/                               # Manajemen role, user & menu permissions
+├── laporan/                            # Export PDF/Excel laporan presensi & payroll
+└── guide/                              # Panduan teknis & GitHub deployment
+```
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dirilis di bawah lisensi [MIT License](LICENSE).

@@ -1,6 +1,9 @@
+@extends('layouts.app')
+
 @php
     $isRegularEmployee = !auth()->user()->isSuperAdmin() && !can_do('users', 'view');
 @endphp
+
 
 @section('title', $isRegularEmployee ? 'Riwayat Presensi Saya' : 'Data Absensi & Inject Excel')
 @section('page-title', $isRegularEmployee ? 'Riwayat Presensi Saya' : 'Data Absensi')

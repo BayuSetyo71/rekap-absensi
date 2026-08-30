@@ -7,7 +7,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 🚀 Sync Code to InfinityFree
+    name: 🚀 Sync Code to InfinityFree (htdocs)
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Checkout Repository
@@ -15,32 +15,19 @@ jobs:
         with:
           fetch-depth: 2
 
-      # 1. Sync file inti Laravel ke folder /core/ di server
-      - name: 📂 Upload Core Laravel ke /core/
+      # Sync seluruh kodingan Laravel langsung ke /htdocs/ di InfinityFree
+      - name: 📂 Upload Seluruh Project ke /htdocs/
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /core/
+          server-dir: /htdocs/
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
-            public/**
+            vendor/**
             .env
             docs/**
             README.md
-
-      # 2. Sync asset publik (css, js, images) ke folder /htdocs/ di server
-      - name: 🌐 Upload Public Assets ke /htdocs/
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./public/
-          server-dir: /htdocs/
-          exclude: |
-            index.php
-            .htaccess

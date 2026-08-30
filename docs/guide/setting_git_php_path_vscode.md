@@ -10,11 +10,11 @@ Panduan ini menjelaskan cara mengaktifkan perintah `git`, `php`, dan `composer` 
 2. Salin dan jalankan perintah berikut:
 
 ```powershell
-[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\laragon\bin\git\cmd;C:\laragon\bin\git\bin;C:\laragon\bin\php\php-8.3.33-Win32-vs16-x64", "User")
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\laragon\bin\git\cmd;C:\laragon\bin\git\bin;C:\laragon\bin\php\php-8.3.33-Win32-vs16-x64;C:\laragon\bin\composer", "User")
 ```
 
-3. **Tutup VS Code, lalu buka kembali VS Code**.
-4. Selesai! Sekarang ketik `git --version` atau `php -v` di terminal VS Code, perintah akan langsung terbaca.
+3. **Tutup VS Code, lalu buka kembali VS Code** (atau buka terminal baru).
+4. Selesai! Sekarang ketik `git --version`, `php -v`, atau `composer -V` di terminal, perintah akan langsung terbaca.
 
 ---
 
@@ -26,7 +26,7 @@ Panduan ini menjelaskan cara mengaktifkan perintah `git`, `php`, dan `composer` 
 
 ```json
 "terminal.integrated.env.windows": {
-    "PATH": "C:\\laragon\\bin\\git\\cmd;C:\\laragon\\bin\\git\\bin;C:\\laragon\\bin\\php\\php-8.3.33-Win32-vs16-x64;${env:PATH}"
+    "PATH": "C:\\laragon\\bin\\git\\cmd;C:\\laragon\\bin\\git\\bin;C:\\laragon\\bin\\php\\php-8.3.33-Win32-vs16-x64;C:\\laragon\\bin\\composer;${env:PATH}"
 }
 ```
 
@@ -43,5 +43,6 @@ Panduan ini menjelaskan cara mengaktifkan perintah `git`, `php`, dan `composer` 
    - `C:\laragon\bin\git\cmd`
    - `C:\laragon\bin\git\bin`
    - `C:\laragon\bin\php\php-8.3.33-Win32-vs16-x64`
+   - `C:\laragon\bin\composer`
 5. Klik **OK** -> **OK** -> **Apply**.
 6. **Restart VS Code** agar perubahan terbaca.

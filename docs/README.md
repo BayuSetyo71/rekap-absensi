@@ -44,6 +44,7 @@ docs/
 └── guide/
     ├── cara_menambah_menu_baru.md      # Panduan langkah demi langkah menambah menu baru
     ├── cara_push_ke_github.md          # Panduan langkah mengunggah (push) project ke GitHub
+    ├── cara_deploy_ke_infinityfree.md  # Panduan langkah demi langkah deploy ke InfinityFree
     └── setting_git_php_path_vscode.md  # Konfigurasi PATH Git & PHP Laragon di Terminal VS Code
 ```
 
